@@ -1,4 +1,4 @@
-FANCY SCROLLER:
+FANCY IOS SCROLLER:
 
 1. Uses mostly Y indexes to adjust profile image size and text size when scrolling.
 
