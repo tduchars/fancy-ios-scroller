@@ -6,14 +6,18 @@ import {
   ScrollView,
   Image,
   Animated,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Dimensions
 } from "react-native";
+import HomeContents from "./components/HomeContents";
 
 HEADER_MAX_HEIGHT = 120;
 HEADER_MIN_HEIGHT = 70;
 PROFILE_MAX_HEIGHT = 80;
 PROFILE_MIN_HEIGHT = 40;
 ADJUSTED_HEIGHT = PROFILE_MAX_HEIGHT / 2;
+
+const { height, width } = Dimensions.get("window");
 
 export default class App extends Component {
   constructor(props) {
@@ -24,6 +28,7 @@ export default class App extends Component {
   }
 
   render() {
+    // ANIMATION STYLING //
     const headerHeight = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
       outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
@@ -70,6 +75,12 @@ export default class App extends Component {
         fontSize: 26,
         paddingLeft: 10,
         color: "black"
+      },
+      readTime: {
+        fontWeight: "bold",
+        fontSize: 16,
+        paddingLeft: 10,
+        color: "lightgrey"
       }
     });
 
@@ -81,30 +92,34 @@ export default class App extends Component {
             top: 0,
             left: 0,
             right: 0,
-            backgroundColor: "orange",
+            backgroundColor: "#e28413",
             height: headerHeight,
             zIndex: headerZIndex,
             alignItems: "center"
           }}
         >
-          <Animated.View
-            style={{
-              position: "absolute",
-              bottom: headerTitleBottom
+          <TouchableWithoutFeedback
+            onPress={() => {
+              this.refs._scrollView.scrollTo({ y: 0 });
             }}
           >
-            <TouchableWithoutFeedback
-              onPress={() => {
-                this.refs._scrollView.scrollTo({ y: 0 });
+            <Animated.View
+              style={{
+                position: "absolute",
+                bottom: headerTitleBottom,
+                width,
+                height: 30,
+                alignItems: "center",
+                justifyContent: "flex-end"
               }}
             >
               <Text
-                style={{ color: "white", fontSize: 14, fontWeight: "bold" }}
+                style={{ color: "white", fontSize: 18, fontWeight: "bold" }}
               >
                 Tony Duchars
               </Text>
-            </TouchableWithoutFeedback>
-          </Animated.View>
+            </Animated.View>
+          </TouchableWithoutFeedback>
         </Animated.View>
         <ScrollView
           style={{ flex: 1 }}
@@ -127,14 +142,17 @@ export default class App extends Component {
             }}
           >
             <Image
-              source={require("./assets/eagles_art.jpg")}
+              source={require("./assets/IMG_0013.jpg")}
               style={styles.imageStyle}
             />
           </Animated.View>
           <View>
             <Text style={styles.primaryName}>Tony Duchars</Text>
           </View>
-          <View style={{ height: 1500 }}></View>
+          <View>
+            <Text style={styles.readTime}>4 minute read...</Text>
+          </View>
+          <HomeContents />
         </ScrollView>
       </View>
     );
