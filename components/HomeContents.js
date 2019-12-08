@@ -1,14 +1,5 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Image,
-  Animated,
-  TouchableWithoutFeedback,
-  Dimensions
-} from "react-native";
+import { StyleSheet, Text, View, Dimensions, Linking } from "react-native";
 
 const { height, width } = Dimensions.get("window");
 
@@ -30,9 +21,9 @@ class HomeContents extends Component {
         hosted: true
       },
       {
-        name: "Web-Socket Messaging",
+        name: "codeGab",
         bio:
-          "codeGab is a messaging application I made using socket.io. The app has 3 different chat rooms and emits messages only to that chatroom. It's styled using Material.UI and when designing it I thought best to make it look like a smaller component as if it were part of a larger application.",
+          "codeGab is a web-socket messaging application I made using socket.io. The app has 3 different chat rooms (Python, Javacript and SQL) and emits messages only to that topics chatroom. It's styled using Material.UI and when designing it I thought best to make it look like a smaller component as if it were part of a larger application.",
         link: "https://github.com/tduchars/websocket-msg",
         hosted: false
       }
@@ -58,83 +49,129 @@ class HomeContents extends Component {
           "My first application I built with ReactJS and is on the list for a bit of noughtstalgia. A functioning noughts and crosses game with dark mode inspired design.",
         link: "https://github.com/tduchars/noughts-and-crosses",
         hosted: false
+      },
+      {
+        name: "Project Generator",
+        bio:
+          "This is a local bash command which can be configured (through a series of callback functions) to create files, write to them and append those files in order to quickly create a project with all necessary / boilerplate code.",
+        link: "https://github.com/tduchars/projectGenerator",
+        hosted: false
       }
     ]
   };
   render() {
+    const styles = StyleSheet.create({
+      projectCard: {
+        borderWidth: 1,
+        borderColor: "lightgrey",
+        borderRadius: 8,
+        height: height / 6,
+        marginTop: 16,
+        marginRight: 8,
+        marginLeft: 8,
+        paddingLeft: 10,
+        paddingRight: 10
+      },
+      smallerProjectCard: {
+        borderWidth: 1,
+        borderColor: "lightgrey",
+        borderRadius: 8,
+        height: height / 6,
+        marginBottom: 16,
+        marginRight: 8,
+        marginLeft: 8,
+        paddingLeft: 10,
+        paddingRight: 10
+      },
+      topContainer: {
+        backgroundColor: "white",
+        marginTop: 16,
+        marginBottom: 16
+      },
+      bottomContainer: {
+        height: height,
+        backgroundColor: "white",
+        marginTop: 16
+      },
+      gitHubLink: {
+        position: "absolute",
+        bottom: 5,
+        left: 10,
+        fontWeight: "bold",
+        color: "#336688"
+      },
+      projectTitle: { marginTop: 10, fontWeight: "bold", fontSize: 18 },
+      titleUnderlined: {
+        textAlign: "center",
+        paddingTop: 12,
+        fontSize: 20,
+        fontWeight: "bold",
+        textDecorationLine: "underline",
+        textDecorationColor: "#e28413"
+      },
+      siteLink: {
+        position: "absolute",
+        bottom: 5,
+        left: 10,
+        fontWeight: "bold",
+        color: "#88333B"
+      }
+    });
+
     return (
       <>
-        <View
-          style={{
-            backgroundColor: "white",
-            marginTop: 15,
-            marginBottom: 15
-          }}
-        >
+        <View style={styles.topContainer}>
+          <Text style={styles.titleUnderlined}>Larger Projects</Text>
           {this.state.projects.map((project, idx) => {
             return (
-              <View
-                style={{
-                  borderWidth: 1,
-                  borderColor: "red",
-                  height: height / 6,
-                  marginTop: 26,
-                  paddingLeft: 10,
-                  paddingRight: 10,
-                  alignItems: "left"
-                }}
-                key={idx}
-              >
-                <Text
-                  style={{ marginTop: 10, fontWeight: "bold", fontSize: 18 }}
-                >
-                  {project.name}
-                </Text>
+              <View style={styles.projectCard} key={idx}>
+                <Text style={styles.projectTitle}>{project.name}</Text>
                 <Text style={{ marginTop: 10 }}>
                   {project.bio.slice(0, 160)}...
                 </Text>
-                <Text
-                  style={{
-                    position: "absolute",
-                    bottom: 5,
-                    left: 10
-                  }}
-                >
-                  {project.link}
-                </Text>
+                {!project.hosted ? (
+                  <Text
+                    style={styles.gitHubLink}
+                    onPress={() => Linking.openURL(project.link)}
+                  >
+                    Link to Repo
+                  </Text>
+                ) : (
+                  <Text
+                    style={styles.siteLink}
+                    onPress={() => Linking.openURL(project.link)}
+                  >
+                    Link to Site
+                  </Text>
+                )}
               </View>
             );
           })}
         </View>
-        <View
-          style={{
-            height: height,
-            backgroundColor: "#fbf5f3",
-            marginTop: 15
-          }}
-        >
+        <Text style={styles.titleUnderlined}>Smaller Projects</Text>
+        <View style={styles.bottomContainer}>
           {this.state.smallerProjects.map((project, idx) => {
             return (
-              <View
-                style={{
-                  borderWidth: 1,
-                  borderColor: "black",
-                  height: height / 6,
-                  marginTop: 26
-                }}
-                key={idx}
-              >
-                <Text>{project.name}</Text>
-                <Text>{project.bio}</Text>
-                <Text
-                  style={{
-                    position: "absolute",
-                    bottom: 5,
-                    textAlign: "center"
-                  }}
-                >
-                  {project.link}
+              <View style={styles.smallerProjectCard} key={idx}>
+                <Text style={styles.projectTitle}>{project.name}</Text>
+                <Text style={{ marginTop: 10 }}>
+                  {project.bio.slice(0, 160)}...
                 </Text>
+                {!project.hosted ? (
+                  <Text
+                    style={styles.gitHubLink}
+                    onPress={() => Linking.openURL(project.link)}
+                  >
+                    Link to Repo
+                  </Text>
+                ) : (
+                  <Text
+                    style={styles.gitHubLink}
+                    onPress={() => Linking.openURL(project.link)}
+                  >
+                    Link to Site
+                  </Text>
+                )}
               </View>
             );
           })}
