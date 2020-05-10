@@ -2,9 +2,10 @@
 
 ![Alt text](assets/HomeScreenshot.png?raw=true "Screnshot of Homescreen of application. Video below shows animation.")
 
-The simplest way to see my portfolio app in action is to click the link for a short 30 second, demonstration video ...
+The simplest way to see my portfolio app in action is to click the link below.
 
 [Link to 20 second video demonstration](https://youtu.be/F9M3a3Xp9T0)
+
 
 If you want to use my portfolio app live you will need to clone and run locally with an ios simulator or scan a device through the expo QR code.
 (Currently optimised for ios but functions well on both operating systems.)
