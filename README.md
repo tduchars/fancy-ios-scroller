@@ -35,8 +35,10 @@ features mentioned below:
 ```npm run ios``` 
 
 This will likely prompt to install expo globally. (This may take some time - grab a coffee)
-    --> If this doesnt work and expo can be a pain to install globally you ay need to sudo the command.
-    --> Worst comes to worse run this command:
+
+- If this doesnt work and expo can be a pain to install globally you ay need to sudo the command.
+
+- <span style="color:red">Worst comes to worse run this command:</span>
     
     ```sudo npm install expo-cli -g --unsafe-perm```
 
