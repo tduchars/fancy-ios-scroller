@@ -26,8 +26,19 @@ features mentioned below:
 ## RUNNING LOCALLY
 
 1. npm i in the terminal will install any necessary dependencies.
+
 2. to see the application in an emulator you will likely need xcode or at least access to the emulators.
-3. next in the terminal 'npm run ios' - this will likely prompt to install expo globally. (This may take some time - grab a coffee)
- --> If this doesnt work and expo can be a pain to install globally you ay need to sudo the command.
+
+3. next in the terminal 
+
+```npm run ios``` 
+
+This will likely prompt to install expo globally. (This may take some time - grab a coffee)
+    --> If this doesnt work and expo can be a pain to install globally you ay need to sudo the command.
+    --> Worst comes to worse run this command:
+    
+    ```sudo npm install expo-cli -g --unsafe-perm```
+
 4. you should then see after a minute or two the ios emulator running the application.
+
 5. If you have the expo applcation on your device then scanning teh qr code runs it locally.
