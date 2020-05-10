@@ -1,7 +1,5 @@
 ## THIS APP DISPLAYS SOME PROJECTS I HAVE WORKED ON
 
-### CREATED DUE TO THE INABILITY ON GITHUB TO LINK MORE THAN 6 PROJECTS
-
 The simplest way to see my portfolio app in action is to click the link for a short 30 second, demonstration video ...
 
 LINK TO VIDEO HERE WHEN COMPLETE
@@ -22,3 +20,12 @@ features mentioned below:
 3. Interpolates a scrollY animation in order to adjust the heights of the header, name and image.
    Then sneaks a white name on top of the now smaller header ready to continue scrolling and
    maximise screen real estate when looing at more content.
+
+## RUNNING LOCALLY
+
+1. npm i in the terminal will install any necessary dependencies.
+2. to see the application in an emulator you will likely need xcode or at least access to the emulators.
+3. next in the terminal 'npm run ios' - this will likely prompt to install expo globally. (This may take some time - grab a coffee)
+ --> If this doesnt work and expo can be a pain to install globally you ay need to sudo the command.
+4. you should then see after a minute or two the ios emulator running the application.
+5. If you have the expo applcation on your device then scanning teh qr code runs it locally.

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Dimensions, Linking } from "react-native";
+import SingleItemDisplay from "./SingleItemDisplay";
 
 const { height, width } = Dimensions.get("window");
 
@@ -11,6 +12,12 @@ class HomeContents extends Component {
         bio:
           "Full-Stack Shpock-style equipment exchange built by myself and 2 others in 9 days. A RESTful API built with Node.js, Express.js, SQLite3. Front-end developed with React Native. Testing carried out using Mocha, Chai and Supertest.",
         link: "https://github.com/tduchars/kitlet-project",
+        hosted: false
+      },
+      {
+        name: "SMTP Email Server",
+        bio:"A quick smtp server which could be used to automate client/customer emails regarding their confirmation, one time password or their reset their password.",
+        link: "https://github.com/tduchars/smtp-email-server",
         hosted: false
       },
       {
@@ -61,28 +68,6 @@ class HomeContents extends Component {
   };
   render() {
     const styles = StyleSheet.create({
-      projectCard: {
-        borderWidth: 1,
-        borderColor: "lightgrey",
-        borderRadius: 8,
-        height: height / 6,
-        marginTop: 16,
-        marginRight: 8,
-        marginLeft: 8,
-        paddingLeft: 10,
-        paddingRight: 10
-      },
-      smallerProjectCard: {
-        borderWidth: 1,
-        borderColor: "lightgrey",
-        borderRadius: 8,
-        height: height / 6,
-        marginBottom: 16,
-        marginRight: 8,
-        marginLeft: 8,
-        paddingLeft: 10,
-        paddingRight: 10
-      },
       topContainer: {
         backgroundColor: "white",
         marginTop: 16,
@@ -93,14 +78,6 @@ class HomeContents extends Component {
         backgroundColor: "white",
         marginTop: 16
       },
-      gitHubLink: {
-        position: "absolute",
-        bottom: 5,
-        left: 10,
-        fontWeight: "bold",
-        color: "#336688"
-      },
-      projectTitle: { marginTop: 10, fontWeight: "bold", fontSize: 18 },
       titleUnderlined: {
         textAlign: "center",
         paddingTop: 12,
@@ -108,72 +85,22 @@ class HomeContents extends Component {
         fontWeight: "bold",
         textDecorationLine: "underline",
         textDecorationColor: "#e28413"
-      },
-      siteLink: {
-        position: "absolute",
-        bottom: 5,
-        left: 10,
-        fontWeight: "bold",
-        color: "#88333B"
       }
     });
-
+    let projects = this.state.projects;
+    let smlprojects = this.state.smallerProjects;
     return (
       <>
         <View style={styles.topContainer}>
           <Text style={styles.titleUnderlined}>Larger Projects</Text>
-          {this.state.projects.map((project, idx) => {
-            return (
-              <View style={styles.projectCard} key={idx}>
-                <Text style={styles.projectTitle}>{project.name}</Text>
-                <Text style={{ marginTop: 10 }}>
-                  {project.bio.slice(0, 160)}...
-                </Text>
-                {!project.hosted ? (
-                  <Text
-                    style={styles.gitHubLink}
-                    onPress={() => Linking.openURL(project.link)}
-                  >
-                    Link to Repo
-                  </Text>
-                ) : (
-                  <Text
-                    style={styles.siteLink}
-                    onPress={() => Linking.openURL(project.link)}
-                  >
-                    Link to Site
-                  </Text>
-                )}
-              </View>
-            );
+          {projects.map((project, idx) => {
+              return <SingleItemDisplay key={project.name+idx} project={project}/>
           })}
         </View>
         <Text style={styles.titleUnderlined}>Smaller Projects</Text>
         <View style={styles.bottomContainer}>
-          {this.state.smallerProjects.map((project, idx) => {
-            return (
-              <View style={styles.smallerProjectCard} key={idx}>
-                <Text style={styles.projectTitle}>{project.name}</Text>
-                <Text style={{ marginTop: 10 }}>
-                  {project.bio.slice(0, 160)}...
-                </Text>
-                {!project.hosted ? (
-                  <Text
-                    style={styles.gitHubLink}
-                    onPress={() => Linking.openURL(project.link)}
-                  >
-                    Link to Repo
-                  </Text>
-                ) : (
-                  <Text
-                    style={styles.gitHubLink}
-                    onPress={() => Linking.openURL(project.link)}
-                  >
-                    Link to Site
-                  </Text>
-                )}
-              </View>
-            );
+        {smlprojects.map((project, idx) => {
+              return <SingleItemDisplay key={project.name+idx} project={project}/>
           })}
         </View>
       </>
