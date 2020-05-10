@@ -1,5 +1,7 @@
 ## THIS APP DISPLAYS SOME PROJECTS I HAVE WORKED ON
 
+![Alt text](assets/HomeScreenshot.png?raw=true "Screnshot of Homescreen of application. Video below shows animation.")
+
 The simplest way to see my portfolio app in action is to click the link for a short 30 second, demonstration video ...
 
 LINK TO VIDEO HERE WHEN COMPLETE
